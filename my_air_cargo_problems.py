@@ -1,6 +1,5 @@
 import itertools
 
-from aimacode.logic import PropKB
 from aimacode.planning import Action
 from aimacode.search import (
     Node, Problem,
@@ -207,9 +206,9 @@ class AirCargoProblem(Problem):
         conditions by ignoring the preconditions required for an action to be
         executed.
         '''
-        # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
-        count = 0
-        return count
+        # Calculate number of unsatisfied positive conditions - relaxes problem + subgoal independence
+        queries = [q for q in self.goal if q not in decode_state(node.state, self.state_map).pos]
+        return len(queries)
 
 
 def air_cargo_p1() -> AirCargoProblem:
