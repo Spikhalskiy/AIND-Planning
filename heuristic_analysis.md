@@ -104,11 +104,14 @@ astar_search with h_1 is actually just a uniform_cost_search because h_1 = const
 ## Uninformed approaches overview
 
 DF Graph Search and Greedy BF Graph Search are fast, but don't find optimal solution.
-Nodes expansions count are smaller in this cases, because they backtrack rarely.
-BF and Uniform Cost are optimal, but with high time and expansions numbers, they backtrack often. 
+Nodes expansions count are smaller in this cases, because they never backtrack and stops on first found solution.
+
+BF, BF Tree, Recursive Best First and Uniform Cost are optimal. But with high time and expansions numbers,
+as they both often go back on planning tree and expand nodes in breadth to find optimal solution.
 BF stops immediately after solution finding, Uniform continues with last depth level, which leads to higher timing.
-BF Tree search doesn't care properly about repetitive states, as a result it's out of normal time on large problems.
+BF Tree search doesn't care properly about repetitive states, as a result it's out of normal time on the large problems.
 Same problem presented in Recursive Best First Search approach.
+
 In family of uninformed searches without heuristics BF is the best option because it finds optimal plan,
 stops right after finding, expand less nodes than other approaches with lesser timings.
 
@@ -120,10 +123,9 @@ For A* we have version without heuristic - h_1,
 version with very simple to compute heuristic with relaxed problem / greedy approach  - h_ignore_preconditions
 and sophisticated GraphSearch based heuristic, which is expensive to compute.
 
-From result we can see that heuristic based approaches
-reducing number of expanded nodes significantly and it case of cheap
+From result we can see that heuristic based approaches reduce number of expanded nodes significantly and it case of cheap
 heuristic could lead to better times.
-On the same time, if use sophisticated heuristic, it's possible to reduce number of nodes expansions significantly, but in
+On the same time, using sophisticated heuristic leads to significant reducing number of nodes expansions, but we get it in
 cost of total time, which is mostly going to heuristic calculation, not on graph traversing.
 
 # What is the best?
